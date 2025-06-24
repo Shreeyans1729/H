@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎉 Happy Birthday 🎂</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background-color: #ffe6f0;
+    }
+    .section {
+      display: none;
+      height: 100vh;
+      width: 100vw;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      position: absolute;
+      top: 0; left: 0;
+      background-color: #ffe6f0;
+    }
+    .active { display: flex !important; }
+    .hearts {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background-image: url('https://media.giphy.com/media/l4FGuhL4U2WyjdkaY/giphy.gif');
+      background-repeat: repeat;
+      opacity: 0.2;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      background-color: #ff66b2;
+      color: white;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .countdown {
+      font-size: 30px;
+      margin: 20px;
+      color: #ff3399;
+    }
+    .wishes {
+      max-width: 90%;
+      margin: 10px auto;
+      font-size: 18px;
+      color: #800040;
+    }
+    .carousel {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      perspective: 1000px;
+    }
+    .carousel img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+      animation: spin 10s linear infinite;
+    }
+    @keyframes spin {
+      from { transform: rotateY(0deg); }
+      to { transform: rotateY(360deg); }
+    }
+    .flowers {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background-image: url('https://i.pinimg.com/originals/15/42/c1/1542c160845b0d06de0597fffb89c586.gif');
+      background-size: cover;
+      opacity: 0.3;
+    }
+    h1 { color: #ff3399; font-size: 40px; }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="https://audio.jukehost.co.uk/f7XkKfnxyEUPrshVdnv4JPc4CrnHZXKY" type="audio/mp3">
+  </audio>
+
+  <div class="section active" id="page1">
+    <div class="hearts"></div>
+    <img src="https://www.pngmart.com/files/3/Birthday-Cake-PNG-File.png" width="300" />
+    <button onclick="nextPage()">Cut Cake 🎂</button>
+  </div>
+
+  <div class="section" id="page2">
+    <div class="hearts"></div>
+    <h1>🎉 Happy Birthday 🎉</h1>
+    <div class="countdown" id="countdown"></div>
+    <div class="wishes">
+      <p>🎈 Wishing you a day filled with love and cheer!</p>
+      <p>🎈 May your smile never fade!</p>
+      <p>🎈 You are special and loved!</p>
+      <p>🎈 May all your dreams come true!</p>
+      <p>🎈 Stay blessed and happy!</p>
+      <p>🎈 Enjoy every moment!</p>
+      <p>🎈 You make life beautiful!</p>
+      <p>🎈 Keep shining always!</p>
+      <p>🎈 Love, laughter & lots of cake!</p>
+      <p>🎈 A year full of joy to you!</p>
+      <p>🎈 Happy Birthday once again!</p>
+    </div>
+    <button onclick="nextPage()">🎁 Open Gift</button>
+  </div>
+
+  <div class="section" id="page3">
+    <div class="hearts"></div>
+    <h1>✨ Memories ✨</h1>
+    <div class="carousel">
+      <img src="1000029589.jpg" />
+      <img src="1000029590.jpg" />
+      <img src="1000029591.jpg" />
+      <img src="1000029592.jpg" />
+      <img src="1000029593.jpg" />
+      <img src="1000029594.jpg" />
+    </div>
+    <button onclick="nextPage()">🌸 Continue</button>
+  </div>
+
+  <div class="section" id="page4">
+    <div class="flowers"></div>
+    <h1>🌸 Happy Birthday 🌸</h1>
+    <h2>From: Shreeyans Raj ❤️</h2>
+    <p style="color:#cc0066">Have a magical and unforgettable day! 💫</p>
+  </div>
+
+  <script>
+    let page = 1;
+    function nextPage() {
+      document.getElementById(`page${page}`).classList.remove('active');
+      page++;
+      document.getElementById(`page${page}`).classList.add('active');
+    }
+
+    const countdown = document.getElementById("countdown");
+    const birthday = new Date("July 31, 2025 00:00:00").getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const gap = birthday - now;
+      const days = Math.floor(gap / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((gap % (1000 * 60)) / 1000);
+      countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s left!`;
+    }, 1000);
+  </script>
+</body>
+</html>
